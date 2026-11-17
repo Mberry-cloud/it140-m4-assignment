@@ -1,29 +1,57 @@
 # IT 140 Module Four Assignment
 # Higher/Lower Game Pseudocode Template
-#
-# Complete the TODO prompts below with your own pseudocode.
-# Keep this file in .pseudo format for submission.
-#
-# Use clear indentation to show decisions and repeated behavior.
-# Your finished pseudocode should address every requirement in the
-# current Module Four Assignment Guidelines and Rubric.
+# Author: Mariah Berry
+
 
 START hilow_game
 
     # Establish a valid guessing range.
-    TODO: Obtain the lower and upper bounds.
-    TODO: Repeat as needed until the bounds satisfy the requirement.
+    DISPLAY "Please pick a starting number (lower bound):"
+    GET low_num
+    DISPLAY "Please pick an ending number (upper bound):"
+    GET high_num
+
+
+    WHILE low_num >= high_num
+	DISPLAY "That range won't work. Your starting number needs to be smaller than your ending number."
+	DISPLAY "Please pick a starting number:"
+	GET low_num
+	DIPLAY "Please pick an ending number:"
+	GET high_num
+    END WHILE
+
 
     # Establish the number the player is trying to guess.
-    TODO: Generate the required random number from the valid range.
+    SET target_num = RANDOM(low_num, high_num)
 
     # Play the game.
-    TODO: Obtain and validate a guess using the selected bounds.
-    TODO: Repeat the required game behavior until the correct guess.
-        TODO: Compare a valid guess and provide the required feedback.
-        TODO: Obtain and validate another guess when play continues.
+    DISPLAY "Try to guess the secret number between " + low_num + " " and " + high_num + ":"
+    GET player_guess
+
+
+    WHILE player_guess < low_num OR player_guess > high_num
+	DISPLAY "Out of bounds! Make sure your guess is between " + low_num + " and " + high_num + ":"
+	GET player_guess
+    END WHILE
+
+
+    WHILE player_guess != target_num
+	IF player_guess < target_num THEN 
+	    DISPLAY "Too low! Try guessing a bigger number."
+	ELSE IF player_guess > target_num THEN
+	    DISPLAY "Too high! Try guessing a smaller number."
+	END IF
+
+	DISPLAY "Take another guess between " + low_num + " and " + high_num + ":"
+	GET player_guess
+
+	WHILE player_guess < low_num OR player_guess > high_num
+	    DISPLAY "Out of bound! Make sure your guess is between " + low_num + " and " + high_num + ":"
+	    GET player_guess
+	END WHILE
+
+	DISPLAY "Nice job! You found the secret number!"
+
 
 END hilow_game
 
-# === References ===
-# TODO: Add references for sources you used, or delete this line if unused.
